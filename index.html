@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SkillBridge AI | Skill Gap Analyzer</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Animated Background -->
+    <div class="background">
+        <div class="glow glow-1"></div>
+        <div class="glow glow-2"></div>
+        <div class="grid"></div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+
+        <div class="logo">
+            <div class="logo-icon">🤖</div>
+
+            <div>
+                <h2>SkillBridge AI</h2>
+                <span>AI Skill Gap Analyzer</span>
+            </div>
+        </div>
+
+        <button class="start-over-btn" onclick="clearChat()">
+            ↻ Start Over
+        </button>
+
+    </nav>
+
+
+    <main class="container">
+
+        <!-- HERO -->
+        <section class="hero">
+
+            <div class="hero-badge">
+                <span class="pulse-dot"></span>
+                SMART CAREER ANALYSIS
+            </div>
+
+            <div class="hero-content">
+
+                <div>
+                    <h1>
+                        Discover Your
+                        <span>Skill Gap.</span>
+                    </h1>
+
+                    <p>
+                        Tell SkillBridge AI about your current skills.
+                        Get an honest skill coverage analysis and discover
+                        what you can learn next.
+                    </p>
+
+                    <div class="career-buttons">
+
+                        <button onclick="quickCareer('AI Engineer')">
+                            <span>🤖</span>
+                            AI Engineer
+                        </button>
+
+                        <button onclick="quickCareer('Web Developer')">
+                            <span>🌐</span>
+                            Web Developer
+                        </button>
+
+                        <button onclick="quickCareer('Data Analyst')">
+                            <span>📊</span>
+                            Data Analyst
+                        </button>
+
+                        <button onclick="quickCareer('Game Developer')">
+                            <span>🎮</span>
+                            Game Developer
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Animated AI -->
+                <div class="ai-visual">
+
+                    <div class="orbit orbit-one"></div>
+                    <div class="orbit orbit-two"></div>
+
+                    <div class="robot">
+
+                        <div class="robot-face">
+
+                            <div class="robot-eyes">
+                                <span></span>
+                                <span></span>
+                            </div>
+
+                            <div class="robot-mouth"></div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CHAT -->
+        <section class="chat-card">
+
+            <div class="chat-header">
+
+                <div class="chat-info">
+
+                    <div class="small-ai">
+                        🤖
+                    </div>
+
+                    <div>
+                        <h2>SkillBridge AI</h2>
+
+                        <p>
+                            <span class="online-dot"></span>
+                            Online · Smart Skill Analysis
+                        </p>
+                    </div>
+
+                </div>
+
+                <button class="clear-chat" onclick="clearChat()">
+                    Clear
+                </button>
+
+            </div>
+
+
+            <!-- CHAT BOX -->
+            <div class="chat-box" id="chatBox">
+
+                <div class="message bot-message">
+
+                    <div class="message-avatar">
+                        🤖
+                    </div>
+
+                    <div class="bubble">
+
+                        <strong>Hello! I'm SkillBridge AI 👋</strong>
+
+                        <br><br>
+
+                        I help you identify your current skills and
+                        discover what you should learn next.
+
+                        <br><br>
+
+                        ⚡ I won't guess your abilities.
+
+                        <br><br>
+
+                        My analysis is based only on the skills
+                        you report and confirm.
+
+                        <br><br>
+
+                        🎯 Choose a career above or tell me your goal!
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Quick Suggestions -->
+            <div class="suggestions">
+
+                <button onclick="quickMessage('I want to become an AI Engineer')">
+                    🤖 AI Engineer
+                </button>
+
+                <button onclick="quickMessage('I want to become a Web Developer')">
+                    🌐 Web Developer
+                </button>
+
+                <button onclick="quickMessage('I want to become a Data Analyst')">
+                    📊 Data Analyst
+                </button>
+
+                <button onclick="quickMessage('I want to become a Game Developer')">
+                    🎮 Game Developer
+                </button>
+
+            </div>
+
+
+            <!-- INPUT -->
+            <div class="input-area">
+
+                <input
+                    type="text"
+                    id="userInput"
+                    placeholder="Tell me your career goal or skills..."
+                    autocomplete="off"
+                >
+
+                <button
+                    class="send-btn"
+                    onclick="sendMessage()"
+                    aria-label="Send message"
+                >
+                    ➤
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- RESULTS -->
+        <section class="results-section hidden" id="resultSection">
+
+            <div class="results-title">
+
+                <span>YOUR ANALYSIS</span>
+
+                <h1>
+                    Skill Gap <em>Report</em>
+                </h1>
+
+                <p>
+                    Based only on the skills you reported and confirmed.
+                </p>
+
+            </div>
+
+
+            <div class="results-grid">
+
+                <!-- SCORE -->
+                <div class="result-card score-card">
+
+                    <h2>📊 Current Skill Coverage</h2>
+
+                    <div class="score-wrapper">
+
+                        <svg width="190" height="190" viewBox="0 0 190 190">
+
+                            <circle
+                                cx="95"
+                                cy="95"
+                                r="75"
+                                class="score-bg"
+                            />
+
+                            <circle
+                                id="scoreCircle"
+                                cx="95"
+                                cy="95"
+                                r="75"
+                                class="score-progress"
+                                transform="rotate(-90 95 95)"
+                            />
+
+                        </svg>
+
+                        <div class="score-number">
+                            <span id="scoreText">0%</span>
+                        </div>
+
+                    </div>
+
+                    <p id="scoreDescription">
+                        Based on your confirmed skills.
+                    </p>
+
+                    <small>
+                        ⚠️ This is skill coverage, not job probability.
+                    </small>
+
+                </div>
+
+
+                <!-- REPORTED SKILLS -->
+                <div class="result-card">
+
+                    <h2>✅ Skills You Reported</h2>
+
+                    <p class="card-description">
+                        Skills confirmed during the chat.
+                    </p>
+
+                    <div
+                        class="skills-container"
+                        id="currentSkills"
+                    ></div>
+
+                </div>
+
+
+                <!-- SKILL GAPS -->
+                <div class="result-card">
+
+                    <h2>📚 Skills To Explore</h2>
+
+                    <p class="card-description">
+                        Important skill areas not yet reported.
+                    </p>
+
+                    <div
+                        class="skills-container"
+                        id="missingSkills"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ROADMAP -->
+            <div class="roadmap-card">
+
+                <div class="roadmap-title">
+
+                    <span>STEP BY STEP</span>
+
+                    <h2>🗺️ Learning Roadmap</h2>
+
+                    <p>
+                        Learn gradually. You don't need to learn
+                        everything at once.
+                    </p>
+
+                </div>
+
+                <div
+                    class="roadmap"
+                    id="roadmap"
+                ></div>
+
+            </div>
+
+
+            <div class="honesty-card">
+
+                <div>🛡️</div>
+
+                <div>
+
+                    <h3>Honest Analysis</h3>
+
+                    <p>
+                        SkillBridge AI does not predict your intelligence,
+                        future success, or job chances. Your result only
+                        represents coverage of the skill areas you reported.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <strong>SkillBridge AI</strong>
+
+        <span>·</span>
+
+        Smart Skill Gap Analyzer
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
